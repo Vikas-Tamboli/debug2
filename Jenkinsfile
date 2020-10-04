@@ -20,11 +20,6 @@ pipeline{
 
    stage("Workspace_cleanup"){
         //Cleaning WorkSpace
-        when {
-        //only terraform destroy if a "destroy" is requested
-        expression { params.ACTION == 'apply'}
-}
-
         steps{
             step([$class: 'WsCleanup'])
 }
@@ -33,7 +28,7 @@ pipeline{
    stage("Repo_clone"){
        //Clone repo from GitHub
       steps {
-         checkout ([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'git@github.com:Vikas-Tamboli/debug1.git']]])
+         checkout ([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'git@github.com:Vikas-Tamboli/debug2.git']]])
 
 }
 }
@@ -120,20 +115,6 @@ pipeline{
 }
 }
 }
-
-
-   stage("Workspace_cleanup"){
-        //Cleaning WorkSpace
-        when {
-        //only terraform destroy if a "destroy" is requested
-        expression { params.ACTION == 'destroy'}
-}
-
-        steps{
-            step([$class: 'WsCleanup'])
-}
-}
-
 
 
 }
