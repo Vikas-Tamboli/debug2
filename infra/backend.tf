@@ -1,9 +1,13 @@
+provider "aws" {
+	region = "ap-south-1"
+}
+
 terraform{
-backend "s3"{
+	backend "s3"{
     
-bucket = "shubham9975"
-key = "terraform.tfstate"
-region = "ap-south-1"
+		bucket = "mybucket880"
+		key = "infra/terraform.tfstate"
+		region = "ap-south-1"
 
 }
 }
