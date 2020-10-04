@@ -1,14 +1,12 @@
- #!/bin/bash
+#!/bin/bash
 
- file="infra/.terraform"
+filename="infra/.terraform"
 
- if[ -d $file ]
- then 
-	 exit
- else
-	 cd infra
-	 terraform init
-	 cd -
- fi
-	 
-	
+if [ -d $filename ]
+then
+        exit
+else
+         cd infra
+         terraform init
+         cd -
+fi	
