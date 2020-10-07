@@ -2,7 +2,7 @@ terraform{
 	backend "s3"{
     
 		bucket  = "mybucket880"
-		key     = "vik/terraform.tfstate"
+		key     = "infra/terraform.tfstate"
 		region  = "ap-south-1"
 		profile = "jenkins"
 }
