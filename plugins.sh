@@ -6,7 +6,7 @@ if [ -d $filename ]
 then
       exit
 else
- cd aws
+ cd infra
  terraform init
  cd -
 fi
