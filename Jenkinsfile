@@ -40,7 +40,7 @@ pipeline{
      //terraform init
      steps{
       script{
-       sh "bash plugind.sh" 
+       sh "bash plugins.sh" 
 }
 }
 }
