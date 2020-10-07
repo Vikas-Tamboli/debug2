@@ -4,9 +4,9 @@ filename="infra/.terraform"
 
 if [ -d $filename ]
 then
-        exit
+      exit
 else
-         cd infra
-         terraform init
-         cd -
-fi	
+ cd aws
+ terraform init
+ cd -
+fi
