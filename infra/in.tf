@@ -2,30 +2,30 @@
 resource "aws_security_group" "test_sg" {
 	
 	description ="allowing ssh and http traffic"
-        vpc_id = "vpc-a85eb9c3"
+        vpc_id = var.vpc_id
 
 	ingress {
-	from_port = 22
-	to_port = 22
+	from_port = var.ssh_port
+	to_port = var.ssh_port
 	protocol = "tcp"
-	cidr_blocks = ["0.0.0.0/0"]
+	cidr_blocks = var.ssh_cidr
 	}
 
 	ingress {
-        from_port = 80
-        to_port = 80
+        from_port = var.http_port
+        to_port = var.http_port
         protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
+        cidr_blocks = var.cidr
         }
 	
 	egress {
 	from_port = 0
 	to_port = 0
 	protocol = "-1"
-	cidr_blocks = ["0.0.0.0/0"]
+	cidr_blocks = var.cidr
         }
 	tags={
-		Name = "haha"
+		Name = var.sg_tag
 }
 
 }
@@ -34,23 +34,23 @@ resource "aws_security_group" "test_sg" {
 #********creating ec2-instance***********
 
 resource "aws_instance" "shubham" {
-        ami = "ami-0e306788ff2473ccb"
-        instance_type = "t2.micro"  
+        ami = var.ami
+        instance_type = var.instance_type  
         vpc_security_group_ids = ["${aws_security_group.test_sg.id}"]
-        key_name = "mykey"
+        key_name = var.key
 
         user_data = <<-EOF
                 #! /bin/bash
                 sudo yum install httpd -y
                 sudo systemctl start httpd.service
                 sudo systemctl enable httpd.service
-                echo "hello brother" >> /var/www/html/index.html
+                echo "hello brother from $(hostname)" >> /var/www/html/index.html
                 EOF
 
 
 
         tags = {
-            Name = "haha"
+            Name = var.ins_tag
         }
 }
 

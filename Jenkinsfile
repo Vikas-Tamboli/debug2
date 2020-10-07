@@ -1,6 +1,10 @@
 pipeline{
   agent any
-  
+  environment {
+	AC_KEY = credintials('AWS_ACCESS_KEY')
+	SEC_KEY = credintials('AWS_SECRET_KEY')
+
+}
   
   parameters {
    choice(
@@ -68,7 +72,7 @@ pipeline{
        script{
        sh '''
             cd infra
-            terraform plan
+            terraform plan -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
             cd -
        '''
 }
@@ -86,7 +90,8 @@ pipeline{
       script{
        sh '''
             cd infra
-            terraform apply --auto-approve
+            terraform apply --auto-approve -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
+
             cd -
        '''
 
@@ -106,9 +111,8 @@ pipeline{
       script{
        sh '''
             cd infra
-            terraform destroy --auto-approve
-            terraform state list
-            terraform destroy --auto-approve
+            terraform destroy --auto-approve -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
+
             cd - 
        ''' 
 
