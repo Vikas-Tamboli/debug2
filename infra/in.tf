@@ -15,7 +15,7 @@ resource "aws_security_group" "test_sg" {
         from_port = var.http_port
         to_port = var.http_port
         protocol = "tcp"
-        cidr_blocks = var.cidr
+        cidr_blocks = "${var.cidr}"
         }
 	
 	egress {
