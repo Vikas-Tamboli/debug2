@@ -4,7 +4,6 @@ terraform{
 		bucket  = "mybucket880"
 		key     = "infra/terraform.tfstate"
 		region  = "ap-south-1"
-		access_key = var.a_key
-                secret_key = var.s_key
+		profile = "jenkins"
 }
 }
