@@ -8,21 +8,21 @@ resource "aws_security_group" "test_sg" {
 	from_port = var.ssh_port
 	to_port = var.ssh_port
 	protocol = "tcp"
-	cidr_block = var.ssh_cidr
+	cidr_blocks = var.ssh_cidr
 	}
 
 	ingress {
         from_port = var.http_port
         to_port = var.http_port
         protocol = "tcp"
-        cidr_block = var.cidr
+        cidr_blocks = var.cidr
         }
 	
 	egress {
 	from_port = 0
 	to_port = 0
 	protocol = "-1"
-	cidr_block = var.cidr
+	cidr_blocks = var.cidr
         }
 	tags={
 		Name = var.sg_tag
