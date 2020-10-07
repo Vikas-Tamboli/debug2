@@ -40,7 +40,11 @@ pipeline{
      //terraform init
      steps{
       script{
-       sh "bash plugins.sh"
+       sh '''
+          cd infra
+          terraform init
+	  cd -
+       '''
 }
 }
 }
@@ -55,7 +59,7 @@ pipeline{
        script{
        sh '''
             cd infra
-            terraform validate
+            terraform validate -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
             cd -
        '''
 }
