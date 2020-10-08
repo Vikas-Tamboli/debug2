@@ -17,6 +17,7 @@ pipeline{
          steps{
             //Welcome message
             script{
+               sh "cowsay welcome"
                sh "echo 'Welcome to Jenkins'"
 }
 }
@@ -40,6 +41,7 @@ pipeline{
      //terraform init
      steps{
       script{
+       sh "cowsay terraform init"
        sh "bash plugins.sh" 
 }
 }
@@ -54,6 +56,7 @@ pipeline{
       steps{
        script{
        sh '''
+            cowsay static_analysis
             cd infra
             terraform validate 
             cd -
@@ -71,6 +74,7 @@ pipeline{
       steps{
        script{
        sh '''
+            cowsay terraform_plan
             cd infra
             terraform plan -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
             cd -
@@ -89,6 +93,7 @@ pipeline{
      steps{
       script{
        sh '''
+            cowsay terraform_apply
             cd infra
             terraform apply --auto-approve -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
 
@@ -110,6 +115,7 @@ pipeline{
      steps{
       script{
        sh '''
+            cowsay terraform_destroy
             cd infra
             terraform destroy --auto-approve -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
 
