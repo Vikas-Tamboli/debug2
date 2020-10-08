@@ -18,7 +18,6 @@ pipeline{
             //Welcome message
             script{
                sh "cowsay welcome"
-               sh "cowsay blablablablabla"
                sh "echo 'Welcome to Jenkins'"
 }
 }
