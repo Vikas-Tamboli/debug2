@@ -10,6 +10,7 @@ then
       exit
 else
 	cd infra
-	terraform init -backend-config="a_key=$ACCESS_KEY" -backend-config="s_key=$SECRET_KEY"
+	
+        terraform init -backend-config="a_key=$ACCESS_KEY" -backend-config="s_key=$SECRET_KEY"
 	cd -
 fi
