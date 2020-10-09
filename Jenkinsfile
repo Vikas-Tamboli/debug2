@@ -42,7 +42,7 @@ pipeline{
      steps{
       script{
        sh "cowsay terraform init"
-       sh "bash plugins.sh" 
+       sh "bash plugins.sh" $AC_KEY $SEC_KEY
 }
 }
 }
