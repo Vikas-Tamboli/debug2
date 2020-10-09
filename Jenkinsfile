@@ -41,8 +41,10 @@ pipeline{
      //terraform init
      steps{
       script{
-       sh "cowsay terraform init"
-       sh "bash plugins.sh" $AC_KEY $SEC_KEY
+       sh '''
+         cowsay terraform init
+         bash plugins.sh $AC_KEY $SEC_KEY
+       '''
 }
 }
 }
@@ -76,7 +78,7 @@ pipeline{
        sh '''
             cowsay terraform_plan
             cd infra
-            terraform plan -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
+            terraform plan -var "access_key=$AC_KEY" -var "secret_key=$SEC_KEY"
             cd -
        '''
 }
@@ -95,7 +97,7 @@ pipeline{
        sh '''
             cowsay terraform_apply
             cd infra
-            terraform apply --auto-approve -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
+            terraform apply --auto-approve -var "access_key=$AC_KEY" -var "secret_key=$SEC_KEY"
 
             cd -
        '''
@@ -117,7 +119,7 @@ pipeline{
        sh '''
             cowsay terraform_destroy
             cd infra
-            terraform destroy --auto-approve -var "a_key=$AC_KEY" -var "s_key=$SEC_KEY"
+            terraform destroy --auto-approve -var "access_key=$AC_KEY" -var "secret_key=$SEC_KEY"
 
             cd - 
        ''' 
